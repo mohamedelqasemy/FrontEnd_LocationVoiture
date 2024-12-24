@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { login } from './ClientService'; // Importer la fonction de connexion
+import { useState } from 'react';
+import { login } from '../../services/ClientService'; // Importer la fonction de connexion
 
 const LoginForm = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();//pour ne refreche
     try {
       const credentials = { email, password };
       const data = await login(credentials);

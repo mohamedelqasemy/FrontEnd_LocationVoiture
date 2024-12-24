@@ -11,13 +11,16 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['Home', 'Search Cars', 'Bookings'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Home', 'Search Cars', 'Bookings','Contact','Abouts'];
+const settings = ['Profile', 'MyResirvation', 'Logout'];
 
 function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate=useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -169,7 +172,7 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
             ) : (
               // Boutons Login/Sign Up pour les utilisateurs non connectés
               <>
-                <Button onClick={onLogin} sx={{ color: '#111111', marginRight: 1 }}>
+                <Button onClick={()=>navigate('login')} sx={{ color: '#111111', marginRight: 1 }}>
                   Login
                 </Button>
                 <Button onClick={onSignUp} variant="outlined" sx={{ color: '#111111', borderColor: 'white' }}>
