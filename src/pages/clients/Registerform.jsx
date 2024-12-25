@@ -1,44 +1,55 @@
-import React, { useState } from 'react';
-import { register } from './ClientService'; // Assurez-vous d'importer la fonction de service
-import { useNavigate } from 'react-router-dom'; // Pour rediriger après l'inscription
+import { useState } from "react";
+import { register } from "../../services/ClientService";
+import { useNavigate } from "react-router-dom";
 
-const Register = () => {
-  const [nom, setNom] = useState('');
-  const [prenom, setPrenom] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [numtel, setNumtel] = useState('');
+const Registerform = () => {
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [password, setPassword] = useState("");
+  const [numtel, setNumtel] = useState("");
   const [image, setImage] = useState(null);
-  const [error, setError] = useState('');
-  
-  const navigate = useNavigate(); // Hook pour rediriger après l'inscription
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleFileUpload = (file) => {
+    if (!file) return null;
+
+    const fileName = Date.now() + "-" + file.name; // Nom unique
+    const filePath = `src/assets/images/${fileName}`; // Chemin logique
+
+    // Simuler un chemin public compilé (en réel, cela se fait via webpack ou vite)
+    return filePath;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Créez un objet avec les données du formulaire
-    const formData = new FormData();
-    formData.append('nom', nom);
-    formData.append('prenom', prenom);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('numtel', numtel);
+    let imagePath = null;
     if (image) {
-      formData.append('image', image);
+      imagePath = handleFileUpload(image);
     }
 
+    const formData = {
+      nom,
+      prenom,
+      password,
+      numtel,
+      image: imagePath, // Chemin envoyé au backend
+    };
+
     try {
-      const data = await register(formData); // Utilisation de la fonction de service
-      navigate('/login'); // Rediriger vers la page de login après inscription
+      await register(formData);
+      navigate("/login");
     } catch (error) {
-      setError(error.message || 'Erreur lors de l\'inscription');
+      setError(error.message || "Erreur lors de l'inscription");
     }
   };
 
   return (
     <div>
       <h2>Inscription</h2>
-      {error && <div style={{ color: 'red' }}>{error}</div>} {/* Afficher les erreurs */}
+      {error && <div style={{ color: "red" }}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nom :</label>
@@ -55,15 +66,6 @@ const Register = () => {
             type="text"
             value={prenom}
             onChange={(e) => setPrenom(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Email :</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -93,11 +95,11 @@ const Register = () => {
           />
         </div>
         <div>
-          <button type="submit">S'inscrire</button>
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default Register;
+export default Registerform;

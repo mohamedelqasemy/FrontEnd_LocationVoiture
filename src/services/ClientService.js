@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:8000/api'; // URL de votre API
+const apiUrl = 'http://localhost:8000/api';
 
 // Fonction pour l'authentification (login)
 export const login = async (credentials) => {
   try {
-    const response = await axios.post(`${apiUrl}/login`, credentials);
-    return response.data; // Contient probablement le jeton d'authentification
+    const response = await axios.post(`${apiUrl}/clients/login`, credentials);
+    return response.data;
   } catch (error) {
     throw error.response ? error.response.data : 'Erreur lors de la connexion';
   }
@@ -15,12 +15,12 @@ export const login = async (credentials) => {
 // Fonction pour l'enregistrement
 export const register = async (userData) => {
   try {
-    const response = await axios.post(`${apiUrl}/register`, userData, {
+    const response = await axios.post(`${apiUrl}/clients`, userData, {
       headers: {
-        'Content-Type': 'multipart/form-data', // Pour envoyer des fichiers
+        'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data; // Données de l'utilisateur ou message de succès
+    return response.data;
   } catch (error) {
     throw error.response ? error.response.data : 'Erreur lors de l\'inscription';
   }

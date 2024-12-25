@@ -1,16 +1,21 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
-import { login } from '../../services/ClientService'; // Importer la fonction de connexion
+import { login } from '../../services/ClientService';
+import { useOutletContext } from 'react-router-dom';
 
-const LoginForm = ({ onLoginSuccess }) => {
-  const [email, setEmail] = useState('');
+const LoginForm = () => {
+  const [numtel, setNumTel] = useState('');
   const [password, setPassword] = useState('');
+  const { handleLoginSuccess } = useOutletContext(); // Récupérer depuis le contexte
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();//pour ne refreche
+   const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const credentials = { email, password };
+      const credentials = { numtel, password };
       const data = await login(credentials);
-      onLoginSuccess(data.token); // Passer le token à un parent pour le stocker
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('userInfo', JSON.stringify(data.client));
+      handleLoginSuccess(data.token);
     } catch (error) {
       alert('Erreur de connexion');
     }
@@ -19,10 +24,10 @@ const LoginForm = ({ onLoginSuccess }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
+        type="text"
+        value={numtel}
+        onChange={(e) => setNumTel(e.target.value)}
+        placeholder="Numéro de téléphone"
       />
       <input
         type="password"
