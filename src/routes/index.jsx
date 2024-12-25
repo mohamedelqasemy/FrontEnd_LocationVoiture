@@ -4,6 +4,8 @@ import Home from "../pages/clients/Home";
 import PageNotFound from "../pages/PageNotFound";
 import LoginForm from "../pages/clients/LoginForm";
 import Registerform from "../pages/clients/Registerform";
+import SearchCar from "../pages/clients/SearchCar";
+import MyReservation from "../pages/clients/MyReservation";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ export const router = createBrowserRouter([
       {
         path:"/login",
         element:<LoginForm/>
+      },
+      {
+        path:"/cars",
+        element:<SearchCar/>
+      },
+      {
+        path:"/myreservations",
+        element:<MyReservation/>
       },
       {
         path:"/register",

@@ -11,20 +11,43 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['Home', 'Search Cars', 'Bookings','Contact','Abouts'];
-const settings = ['Profile', 'My Resirvation', 'Logout'];
+const pages = ['Home', 'Search Cars', 'Bookings', 'Contact', 'Abouts'];
+const settings = ['Profile', 'My Reservation', 'Logout'];
 
 function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
+
+    // Redirection basée sur le nom de la page
+    switch (page) {
+      case 'Home':
+        navigate('/');
+        break;
+      case 'Search Cars':
+        navigate('/cars');
+        break;
+      case 'Bookings':
+        navigate('/bookings');
+        break;
+      case 'Contact':
+        navigate('/contact');
+        break;
+      case 'Abouts':
+        navigate('/about');
+        break;
+      default:
+        break;
+    }
   };
 
   const handleOpenUserMenu = (event) => {
@@ -66,7 +89,7 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="#111111"
+              color="inherit"
             >
               <MenuIcon />
             </IconButton>
@@ -83,11 +106,11 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => setAnchorElNav(null)}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => handleCloseNavMenu(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -119,7 +142,7 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page)}
                 sx={{ my: 2, color: '#111111', display: 'block' }}
               >
                 {page}
@@ -130,7 +153,6 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
           {/* User Section */}
           <Box sx={{ flexGrow: 0 }}>
             {isLoggedIn ? (
-              // Menu utilisateur avec avatar
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -157,7 +179,11 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
                     <MenuItem
                       key={setting}
                       onClick={() => {
-                        if (setting === 'Logout') onLogout();
+                        if (setting === 'Logout'){
+                          onLogout()
+                        }else if (setting === 'My Reservation'){
+                          navigate('/myreservations');
+                        };
                         handleCloseUserMenu();
                       }}
                     >
@@ -167,12 +193,15 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
                 </Menu>
               </>
             ) : (
-              // Boutons Login/Sign Up pour les utilisateurs non connectés
               <>
                 <Button onClick={onLogin} sx={{ color: '#111111', marginRight: 1 }}>
                   Login
                 </Button>
-                <Button onClick={onSignUp} variant="outlined" sx={{ color: '#111111', borderColor: 'white' }}>
+                <Button
+                  onClick={onSignUp}
+                  variant="outlined"
+                  sx={{ color: '#111111', borderColor: 'white' }}
+                >
                   Sign Up
                 </Button>
               </>
