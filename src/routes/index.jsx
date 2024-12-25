@@ -6,6 +6,9 @@ import LoginForm from "../pages/clients/LoginForm";
 import Registerform from "../pages/clients/Registerform";
 import Profile from "../pages/clients/Profile";
 import Abouts from './../pages/clients/Abouts';
+import SearchCar from "../pages/clients/SearchCar";
+import MyReservation from "../pages/clients/MyReservation";
+
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +21,14 @@ export const router = createBrowserRouter([
       {
         path:"/login",
         element:<LoginForm/>
+      },
+      {
+        path:"/cars",
+        element:<SearchCar/>
+      },
+      {
+        path:"/myreservations",
+        element:<MyReservation/>
       },
       {
         path:"/register",
