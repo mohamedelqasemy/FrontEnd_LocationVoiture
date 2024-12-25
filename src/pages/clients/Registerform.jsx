@@ -16,9 +16,7 @@ const Registerform = () => {
     if (!file) return null;
 
     const fileName = Date.now() + "-" + file.name; // Nom unique
-    const filePath = `src/assets/images/${fileName}`; // Chemin logique
-
-    // Simuler un chemin public compilé (en réel, cela se fait via webpack ou vite)
+    const filePath = `${fileName}`; // Chemin logique
     return filePath;
   };
 

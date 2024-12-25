@@ -11,14 +11,29 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../pages/clients/route'; // Import des routes
 
-const pages = ['Home', 'Search Cars', 'Bookings','Contact','Abouts'];
-const settings = ['Profile', 'My Resirvation', 'Logout'];
+// const pages = ['Home', 'Search Cars', 'Bookings','Contact','Abouts'];
+const pages = [
+  { name: 'Home', route: ROUTES.HOME },
+  { name: 'Search Cars', route: ROUTES.SEARCH_CARS },
+  { name: 'Bookings', route: ROUTES.BOOKINGS },
+  { name: 'Contact', route: ROUTES.CONTACT },
+  { name: 'Abouts', route: ROUTES.ABOUT },
+];
+
+// const settings = ['Profile', 'My Resirvation', 'Logout'];
+const settings = [
+  { name: 'Profile', route: ROUTES.PROFILE },
+  { name: 'My Reservation', route: ROUTES.RESERVATION },
+  { name: 'Logout', action: 'logout' },
+];
 
 function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const navigate = useNavigate()
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -33,6 +48,16 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  // fonction va etre utiliser pour la navigation entre les pages
+  const handleNavigation = (route, action) => {
+    if (action === 'logout') {
+      onLogout();
+    } else {
+      navigate(route);
+    }
+    handleCloseUserMenu();
   };
 
   return (
@@ -87,8 +112,14 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => {
+                    navigate(page.route);
+                    handleCloseNavMenu();
+                  }}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -98,8 +129,7 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="/"
+            onClick={() => navigate(ROUTES.HOME)}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -107,8 +137,8 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: '#111111',
-              textDecoration: 'none',
+              color: '#be1f2c',
+              cursor: 'pointer',
             }}
           >
             AZULCar
@@ -116,13 +146,13 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
 
           {/* Navigation Menu (Desktop View) */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => navigate(page.route)}
                 sx={{ my: 2, color: '#111111', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -155,13 +185,10 @@ function ClientAppBar({ isLoggedIn, onLogin, onSignUp, onLogout }) {
                 >
                   {settings.map((setting) => (
                     <MenuItem
-                      key={setting}
-                      onClick={() => {
-                        if (setting === 'Logout') onLogout();
-                        handleCloseUserMenu();
-                      }}
+                      key={setting.name}
+                      onClick={() => handleNavigation(setting.route, setting.action)}
                     >
-                      <Typography textAlign="center">{setting}</Typography>
+                      <Typography textAlign="center">{setting.name}</Typography>
                     </MenuItem>
                   ))}
                 </Menu>

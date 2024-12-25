@@ -1,0 +1,196 @@
+.profile-photo .square img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-photo .square {
+  height: 200px;
+  width: 200px;
+  border: 1px solid #f2f2f2;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.profile-photo .btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#main_title {
+  color: #d81324;
+}
+
+/* Sections du formulaire */
+.form-section {
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.form-section h4 {
+  margin-bottom: 20px;
+  color: #0b2153;
+}
+
+/* Boutons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #0b2153;
+  color: #ffffff;
+}
+
+.btn-danger {
+  background-color: #d81324;
+  color: #ffffff;
+}
+
+/* Champs de formulaire */
+.form-control {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f2f2f2;
+  font-size: 14px;
+}
+
+/* Mise en page des colonnes */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Colonne pour la photo de profil */
+.col-4 {
+  flex: 0 0 calc(33.33% - 10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Colonne pour les détails */
+.col-8 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.col-6 {
+  flex: 0 0 calc(50% - 10px);
+}
+
+.col-12 {
+  flex: 0 0 100%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Notifications */
+.alert {
+  padding: 20px;
+  background-color: #d81324;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.success {
+  padding: 20px;
+  background-color: #0b2153;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+/* Bouton de fermeture */
+.closebtn {
+  margin-left: 15px;
+  color: #ffffff;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: #f2f2f2;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .row {
+      flex-direction: column;
+  }
+
+  .col-4, .col-8 {
+      flex: 0 0 100%;
+  }
+}
+
+.custom-file-upload {
+  position: relative;
+  display: inline-block;
+}
+
+.file-input {
+  display: none; /* Masquer l'input de fichier natif */
+}
+
+.upload-label {
+  display: inline-block;
+  background-color: #0b2153; /* Couleur de fond principale */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-label:hover {
+  background-color: #c8ad05; /* Couleur au survol */
+}
+
+.upload-label:active {
+  background-color: #f2f2f2; /* Couleur lorsqu'on clique */
+}
+
+.upload-label:disabled {
+  background-color: #ffffff; /* Couleur quand désactivé */
+  cursor: not-allowed;
+  color: #cccccc;
+}
