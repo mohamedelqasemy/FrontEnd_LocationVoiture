@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { register } from "../../services/ClientService";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 const Registerform = () => {
   const [nom, setNom] = useState("");
@@ -45,58 +47,89 @@ const Registerform = () => {
   };
 
   return (
-    <div>
-      <h2>Inscription</h2>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nom :</label>
-          <input
+    <>
+      <Box
+        sx={{
+          display:"flex",
+          flexDirection:"column",
+          width: "400px",
+          margin: "auto",
+          marginTop: "3px",
+          marginBottom:"12px",
+          padding: 4,
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+          borderRadius: 2,
+          backgroundColor: "#fff",
+        }}
+      >
+        <Typography
+         sx={{
+            fontFamily:"algerian",
+            alignSelf:"center",
+            color:"#bd1121",
+            variant:"h2",
+            component:"h2"
+          }}
+         >
+          Register
+        </Typography>
+        {error && (
+          <Typography variant="body2" color="error" gutterBottom>
+            {error}
+          </Typography>
+        )}
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          <TextField
+            label="Nom"
             type="text"
             value={nom}
             onChange={(e) => setNom(e.target.value)}
             required
+            fullWidth
+            variant="outlined"
           />
-        </div>
-        <div>
-          <label>Prénom :</label>
-          <input
+          <TextField
+            label="Prénom"
             type="text"
             value={prenom}
             onChange={(e) => setPrenom(e.target.value)}
             required
+            fullWidth
+            variant="outlined"
           />
-        </div>
-        <div>
-          <label>Mot de passe :</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Numéro de téléphone :</label>
-          <input
+          <TextField
+            label="Numéro de téléphone"
             type="text"
             value={numtel}
             onChange={(e) => setNumtel(e.target.value)}
             required
+            fullWidth
+            variant="outlined"
           />
-        </div>
-        <div>
-          <label>Image de profil :</label>
-          <input
-            type="file"
-            onChange={(e) => setImage(e.target.files[0])}
+          <TextField
+            label="Mot de passe"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            fullWidth
+            variant="outlined"
           />
-        </div>
-        <div>
-          <button type="submit">Register</button>
-        </div>
-      </form>
-    </div>
+          
+          <Button type="submit" variant="contained" color="warning" fullWidth>
+            Register
+          </Button>
+        </Box>
+      </Box>
+    </>
   );
 };
 
