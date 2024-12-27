@@ -4,13 +4,19 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Button, Box } from '@mui/material';
+import { useDateContext } from '../DateContext';
+import { useNavigate } from 'react-router-dom';
 
 function SearchCars() {
+  const { setSelectedDate } = useDateContext();
+  const navigate = useNavigate()
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs());
 
   const handleSearch = () => {
-    alert(`Recherche des voitures disponibles du ${startDate.format('DD/MM/YYYY')} au ${endDate.format('DD/MM/YYYY')}`);
+    //alert(`Recherche des voitures disponibles du ${startDate.format('DD/MM/YYYY')} au ${endDate.format('DD/MM/YYYY')}`);
+    setSelectedDate ({start: startDate, end: endDate});
+    navigate("/bookings"); // Navigate to the booking page
   };
 
   return (

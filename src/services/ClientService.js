@@ -2,6 +2,15 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:8000/api';
 
+// Fonction pour ajouter une réservation
+export const addReservation = async (reservationData) => {
+  try {
+    const response = await axios.post(`${apiUrl}/reservations`, reservationData);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : 'Erreur lors de l\'ajout de la réservation';
+  }
+};
 
 // Fonction pour récupérer les réservations
 export const getReservations = async () => {

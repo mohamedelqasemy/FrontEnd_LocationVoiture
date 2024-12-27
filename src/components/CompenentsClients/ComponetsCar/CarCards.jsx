@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 import { getCars } from '../../../services/ClientService'; // Assurez-vous que le chemin est correct
+import { useCarContext } from '../../CarContext';
+import { useNavigate } from 'react-router-dom';
 
 const CarCards = ({ filters }) => {
+  const { setSelectedCar } = useCarContext();
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -19,7 +23,6 @@ const CarCards = ({ filters }) => {
         setLoading(false);
       }
     };
-
     fetchCars();
   }, []);
 
@@ -39,7 +42,11 @@ const CarCards = ({ filters }) => {
     });
   };
   
-  
+  const handleReserve = (car) => {
+    setSelectedCar(car);
+    console.log(car); // Save the selected car in context
+    navigate("/bookings"); // Navigate to the booking page
+  };
   
   
 
@@ -91,7 +98,13 @@ const CarCards = ({ filters }) => {
                         >
                         {car.description}
                     </Typography>
-                  <Button variant="contained" color="primary" fullWidth sx={{ marginBottom: '0px' }}>
+                  <Button 
+                    variant="contained" 
+                    color="primary" 
+                    fullWidth 
+                    sx={{ marginBottom: '0px' }}
+                    onClick={() => handleReserve(car)}
+                    >
                     Réserver maintenant
                   </Button>
                 </CardContent>

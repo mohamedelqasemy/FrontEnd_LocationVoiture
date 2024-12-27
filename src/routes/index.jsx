@@ -8,6 +8,7 @@ import Profile from "../pages/clients/Profile";
 import Abouts from './../pages/clients/Abouts';
 import SearchCar from "../pages/clients/SearchCar";
 import MyReservation from "../pages/clients/MyReservation";
+import Bookings from "../pages/clients/Bookings";
 
 
 export const router = createBrowserRouter([
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path:"/abouts",
         element:<Abouts/>
+      },
+      {
+        path:"/bookings",
+        element:<Bookings/>
       },
       {
         path:"*",
