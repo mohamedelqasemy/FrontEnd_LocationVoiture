@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { getCars } from '../../services/ClientService'; // Importer la fonction pour récupérer les voitures
@@ -8,6 +9,8 @@ import bmwLogo from '../../assets/images/logo_bmw.png';
 import renaultLogo from '../../assets/images/logo_renault.png';
 import mercedesLogo from '../../assets/images/logo_mercedes.png';
 import audiLogo from '../../assets/images/logo_audi.png';
+import CarRentalCarousel from '../../components/CompenentsClients/CarouselComponent/CarRentalCarousel';
+
 
 function Home() {
   const [pickupTime, setPickupTime] = React.useState(dayjs());
@@ -35,6 +38,8 @@ function Home() {
         <h1>Bienvenue sur AZULCar</h1>
         <p>Trouvez, comparez et louez la voiture idéale pour vos besoins.</p>
       </div>
+
+      <CarRentalCarousel/>
 
       {/* Search Cars */}
       <SearchCars />
