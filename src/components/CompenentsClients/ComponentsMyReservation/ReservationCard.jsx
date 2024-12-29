@@ -2,6 +2,12 @@ import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Button, Box } from '@mui/material';
 
 const ReservationCard = ({ reservation, car, onCancel, onContact }) => {
+  // Formater les dates
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fr-FR'); // Format français : "yyyy-MM-dd"
+  };
+
   return (
     <Card sx={{ display: 'flex', marginBottom: 2 }}>
       {/* Image de la voiture */}
@@ -22,7 +28,7 @@ const ReservationCard = ({ reservation, car, onCancel, onContact }) => {
             Réservation #{reservation.id}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Période: {reservation.date_start} au {reservation.date_end}
+            Période: {formatDate(reservation.date_start)} au {formatDate(reservation.date_end)}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Client ID: {reservation.client_id}
