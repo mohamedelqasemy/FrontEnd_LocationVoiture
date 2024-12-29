@@ -9,6 +9,7 @@ import Abouts from './../pages/clients/Abouts';
 import SearchCar from "../pages/clients/SearchCar";
 import MyReservation from "../pages/clients/MyReservation";
 import Bookings from "../pages/clients/Bookings";
+import ContactUs from "../components/CompenentsClients/ComponentCoontactUs/ContactUs";
 
 
 export const router = createBrowserRouter([
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path:"/profile",
         element:<Profile/>
+      },
+      {
+        path:"/contact",
+        element:<ContactUs/>
       },
       {
         path:"/abouts",

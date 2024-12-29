@@ -13,9 +13,11 @@ export const addReservation = async (reservationData) => {
 };
 
 // Fonction pour récupérer les réservations
-export const getReservations = async () => {
+export const getReservations = async (userId) => {
   try {
-    const response = await axios.get(`${apiUrl}/reservations`);
+    const response = await axios.get(`${apiUrl}/reservations`, {
+      params: { user_id: userId },
+    });
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : 'Erreur lors de la récupération des réservations';

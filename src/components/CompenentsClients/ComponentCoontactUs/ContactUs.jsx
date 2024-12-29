@@ -33,6 +33,7 @@ const ContactUs = ({ onSubmit }) => {
       sx={{
         maxWidth: 600,
         margin: 'auto',
+        marginBottom:5,
         padding: 4,
         borderRadius: 2,
         boxShadow: 3,

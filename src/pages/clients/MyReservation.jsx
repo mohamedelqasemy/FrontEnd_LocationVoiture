@@ -14,8 +14,17 @@ export default function MyReservation() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const reservationsData = await getReservations();
-
+        // Récupérer l'utilisateur connecté depuis le localStorage
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        const userId = userInfo?.id;
+  
+        if (!userId) {
+          console.error('Aucun utilisateur connecté.');
+          return;
+        }
+  
+        const reservationsData = await getReservations(userId);
+  
         // Récupérer les informations de chaque voiture associée
         const carsData = {};
         for (const reservation of reservationsData) {
@@ -24,7 +33,7 @@ export default function MyReservation() {
             carsData[reservation.car_id] = carData;
           }
         }
-
+  
         setReservations(reservationsData);
         setFilteredReservations(reservationsData); // Initialement, toutes les réservations sont affichées
         setCars(carsData);
@@ -34,7 +43,7 @@ export default function MyReservation() {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
 
