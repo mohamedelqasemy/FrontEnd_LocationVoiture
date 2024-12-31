@@ -1,0 +1,20 @@
+
+.rentedCarsTable {
+    width: 100%;
+    border-collapse: separate; /* Required for border-spacing to work */
+    border-spacing: 15px 10px; /* Horizontal and vertical spacing */
+  }
+  
+  .rentedCarsTable th,
+  .rentedCarsTable td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .rentedCarsTable th {
+    background-color: #f0f0f0;
+  }
+  
+  .rentedCarsTable td {
+    background-color: #fff;
+  }

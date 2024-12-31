@@ -10,6 +10,10 @@ import SearchCar from "../pages/clients/SearchCar";
 import MyReservation from "../pages/clients/MyReservation";
 import Bookings from "../pages/clients/Bookings";
 import ContactUs from "../components/CompenentsClients/ComponentCoontactUs/ContactUs";
+import AdminLayout from "../layouts/AdminLayout";
+import Dashboard from "../components/ComponentsAdmin/Dashboard/Dashboard";
+import Overview from "../components/ComponentsAdmin/Dashboard/Overview";
+import CarsAdmin from "../pages/admin/CarsAdmin";
 
 
 export const router = createBrowserRouter([
@@ -57,7 +61,22 @@ export const router = createBrowserRouter([
         element:<PageNotFound/>
       }
     ]
-  }
-
-  
+  },
+  {
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+        children: [
+          { path: "overview", element: <Overview /> },
+        
+        ],
+      },
+      {
+        path:"/cars-admin",
+        element: <CarsAdmin/>
+      },
+    ],
+  },
 ]);

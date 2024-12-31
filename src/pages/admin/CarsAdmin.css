@@ -1,0 +1,33 @@
+.CarsAdminContainer{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10xp;
+    
+}
+.addcar,.searchdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.addcar button{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    width: fit-content;
+}
+.searchdiv input {
+    width: 30%;
+    padding: 8px;
+    border: gray solid 1px;
+    border-radius: 10px;
+    outline: none;
+}
+.searchdiv input:focus {
+   
+    border: red solid 2px;
+    outline: none;
+    
+}

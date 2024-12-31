@@ -1,0 +1,46 @@
+.DashboardContainer{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.DashboardContainer nav{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+
+}
+.DashboardContainer nav ul{
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    padding: 0;
+    border-bottom: grey 1px solid;
+   
+}
+.DashboardContainer nav ul li{
+ list-style: none;
+ padding: 10px;
+ transition: 0.3s ease all;
+ margin-bottom: 2px;
+ border-radius: 5px;
+ cursor: pointer;
+}
+.DashboardContainer nav ul li:hover{
+    
+    background-color: lightgray;
+   }
+   .link{
+    text-decoration: none;
+    color: inherit;
+}
+.ContentOfDashboardd{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow: auto;
+}

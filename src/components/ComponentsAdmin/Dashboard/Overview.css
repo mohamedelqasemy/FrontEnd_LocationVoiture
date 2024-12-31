@@ -1,0 +1,38 @@
+.overview{
+    display: flex;
+    justify-content: space-evenly;
+    height: fit-content;
+    padding: 20px;
+    background-color: rgba(187, 185, 185, 0.5); border-radius: 10px;
+  
+  
+    margin-top: 20px;
+}
+.generalMetrics{
+    display: flex;
+    width: fit-content;
+    height: 90%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    padding-bottom: 0;
+    border-radius: 10px;
+    
+}
+.generalMetrics span{
+    font-size: 15px;
+    font-weight: 600;
+}
+.generalMetrics h5{
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.SectionTitle{
+    font-size: large;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
