@@ -19,6 +19,7 @@
     "dayjs": "^1.11.13",
     "frontend-locationvoiture": "file:",
     "react": "^18.3.1",
+    "react-data-table-component": "^7.6.2",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
     "react-slick": "^0.30.3",

@@ -76,6 +76,30 @@ export const getCars = async () => {
     }
   };
   
+  // Fonction pour récupérer la liste des vlients
+export const getClients = async () => {
+  try {
+    const response = await axios.get(`${apiUrl}/clients`);
+    return response.data;
+  } catch (error) {
+    throw error.response
+      ? error.response.data
+      : "Erreur lors de la récupération des clients";
+  }
+};
+// Fonction pour l'authentification (login)
+export const adminlogin = async (credentials) => {
+  try {
+    const response = await axios.post(
+      `${apiUrl}/admins/adminlogin`,
+      credentials
+    );
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : "Erreur lors de la connexion";
+  }
+};
+
   
   
   

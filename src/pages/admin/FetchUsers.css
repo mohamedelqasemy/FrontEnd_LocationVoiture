@@ -1,0 +1,22 @@
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; }
+
+.search h1 {
+    font-size: 28px; 
+    font-weight: bold; 
+   
+    color:#0072ff;
+}
+
+.search input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+

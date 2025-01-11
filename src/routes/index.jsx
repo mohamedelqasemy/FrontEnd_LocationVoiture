@@ -14,7 +14,8 @@ import AdminLayout from "../layouts/AdminLayout";
 import Dashboard from "../components/ComponentsAdmin/Dashboard/Dashboard";
 import Overview from "../components/ComponentsAdmin/Dashboard/Overview";
 import CarsAdmin from "../pages/admin/CarsAdmin";
-
+import  Login  from "../components/ComponentsAdmin/Login/Login";
+import { FetchUsers } from "../pages/admin/FetchUsers";
 
 export const router = createBrowserRouter([
   {
@@ -81,7 +82,15 @@ export const router = createBrowserRouter([
       {
         path: "/NewCarForm",
         element: <form/>
-      }
+      },
+      {
+        path: "/users",
+        element: <FetchUsers />,
+      },
     ],
+  },
+  {
+    path: "/admin-login", // Add the route for admin login
+    element: <Login/>,
   },
 ]);
