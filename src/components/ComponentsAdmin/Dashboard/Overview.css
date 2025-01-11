@@ -1,38 +1,67 @@
-.overview{
+/* General Overview Container */
+.overview {
     display: flex;
     justify-content: space-evenly;
     height: fit-content;
     padding: 20px;
-    background-color: rgba(187, 185, 185, 0.5); border-radius: 10px;
-  
-  
+    background-color: rgba(187, 185, 185, 0.5);
+    border-radius: 10px;
     margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
-.generalMetrics{
+
+/* General Metrics Box */
+.generalMetrics {
     display: flex;
     width: fit-content;
     height: 90%;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: white;
-    padding: 10px;
-    padding-bottom: 0;
+    padding: 20px 15px;
     border-radius: 10px;
-    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Small shadow for definition */
+    transition: transform 0.3s ease-in-out;
 }
-.generalMetrics span{
-    font-size: 15px;
+
+.generalMetrics:hover {
+    transform: scale(1.05); /* Hover effect */
+}
+
+/* Title Styling */
+.generalMetrics span {
+    font-size: 16px;
     font-weight: 600;
+    color: #007BFF; /* Blue color for labels */
+    margin-bottom: 5px;
 }
-.generalMetrics h5{
+
+.generalMetrics h5 {
     font-size: 40px;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 0;
+    color: #007BFF; /* Blue color for numbers */
 }
-.SectionTitle{
-    font-size: large;
+
+/* Section Title Styling */
+.SectionTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0056b3; /* Darker blue for section titles */
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+/* Loading and Error Messages */
+.RentedCars p {
+    font-size: 18px;
+    color: #ff6347; /* Red color for errors */
+    font-weight: 500;
+}
+
+/* Additional Enhancements */
+.overview .generalMetrics {
+    transition: transform 0.3s ease-in-out;
 }

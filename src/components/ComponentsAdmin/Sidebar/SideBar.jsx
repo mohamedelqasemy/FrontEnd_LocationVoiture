@@ -12,6 +12,7 @@ function SideBar() {
           </li>
         <li> <Link class="link" to="/cars-admin" >Cars</Link></li>
         <li> <Link class="link" to="/" >Users</Link> </li>
+        <li> <Link class="link" to="/" >Admins</Link> </li>
       
       </ul>
         <div className="logout">

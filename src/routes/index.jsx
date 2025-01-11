@@ -77,6 +77,11 @@ export const router = createBrowserRouter([
         path:"/cars-admin",
         element: <CarsAdmin/>
       },
+
+      {
+        path: "/NewCarForm",
+        element: <form/>
+      }
     ],
   },
 ]);

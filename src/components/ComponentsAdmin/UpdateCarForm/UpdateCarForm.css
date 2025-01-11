@@ -1,0 +1,117 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background */
+    backdrop-filter: blur(10px); /* More blur effect for better focus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Keeps the modal on top */
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Modal Content Box */
+  .modal-content {
+    background-color: #fff; /* White background for the modal */
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh; /* Limit the height of the modal */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+    position: relative;
+    overflow-y: auto; /* Enable vertical scrolling */
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Smooth fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Button Styles */
+  button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Close Button */
+  button.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    color: #333;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button.close-btn:hover {
+    color: #007bff; /* Change color to blue on hover */
+  }
+  
+  /* Form Input Fields */
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  input[type="text"]:focus, textarea:focus {
+    border-color: #007bff; /* Highlight input fields on focus */
+    outline: none;
+  }
+  
+  /* Textarea Customization */
+  textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+    min-height: 100px; /* Make sure textarea has some height */
+  }
+  
+  /* Image Preview */
+  .image-preview {
+    margin-top: 10px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .image-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Responsive behavior for smaller screens */
+  @media screen and (max-width: 600px) {
+    .modal-content {
+      width: 95%; /* Make the modal more responsive on small screens */
+      max-height: 80vh; /* Limit the height even on smaller screens */
+    }
+  }
+  

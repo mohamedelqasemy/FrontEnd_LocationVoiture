@@ -23,3 +23,51 @@ export const getCars = async () => {
     }
   };
  
+  export const createCar = async (formData) => {
+    try {
+      console.log('Sending request to API...');
+      const response = await axios.post('http://localhost:8000/api/cars', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('API response:', response);
+      return response.data;
+    } catch (error) {
+      console.error('API error:', error.response || error.message);
+      alert(`Failed to create car: ${error.response ? error.response.data.message : error.message}`);
+      throw error.response ? error.response.data : 'Failed to create car';
+    }
+  };
+
+  export const updateCar = async (carId, formData) => {
+    try {
+      const response = await axios.put(`${apiUrl}/cars/${carId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Important for file upload
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('API error:', error.response || error.message);
+      throw error.response ? error.response.data : 'Failed to update car';
+    }
+  };
+  
+  
+  export const deleteCar = async (carId) => {
+    try {
+      const response = await axios.delete(`${apiUrl}/cars/${carId}`);
+      return response.data; 
+    } catch (error) {
+      console.error('API error:', error.response || error.message);
+      throw error.response ? error.response.data : 'Failed to delete car';
+    }
+  };
+  
+  
+  
+  
+  
+  
+  

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CarCard from '../../components/ComponentsAdmin/Voiture/CarCard';
 import './CarsAdmin.css';
 import { getCars } from '../../services/ClientService';
+import Form from '../../components/ComponentsAdmin/NewCarForm/Form';
 
 export default function CarsAdmin() {
   const [cars, setCars] = useState([]); // Initialize as an empty array
@@ -9,6 +10,7 @@ export default function CarsAdmin() {
   const [error, setError] = useState(null); // For error handling
   const [search,setSearch]=useState("")
   const [allCars, setAllCars] = useState([]); 
+  const [showForm, setShowForm] = useState(false); // State to show/hide the form
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -47,10 +49,18 @@ export default function CarsAdmin() {
     console.log("khs ytbdlo");
     
   }
+
+  const handleAddCarClick = () => {
+    setShowForm(true); // Show the form (trigger the modal)
+  };
+
+  const closeForm = () => {
+    setShowForm(false); // Close the form (hide the modal)
+  };
   return (
     <>
       <div className="addcar">
-        <button>Ajouter une voiture</button>
+      <button onClick={handleAddCarClick}>Add a Car</button>
       </div>
       <div className="searchdiv">
        <input type="text" onChange={(e)=>onSearch(e)} value={search} />
@@ -64,9 +74,23 @@ export default function CarsAdmin() {
         ) : cars.length === 0 ? (
           <p>No cars available.</p> // Handle empty car list
         ) : (
-          cars.map((car) => <CarCard key={car.id} {...car} />)
+          cars.map(car => (
+            <CarCard
+              key={car.id}
+              id={car.id}
+              marque={car.marque}
+              model={car.model}
+              image={car.image}
+              prix={car.prix}
+              description={car.description}
+            />
+          )
+        )
+
         )}
       </div>
+      {/* Render the Form modal */}
+      {showForm && <Form onClose={closeForm} />}
     </>
   );
 }
