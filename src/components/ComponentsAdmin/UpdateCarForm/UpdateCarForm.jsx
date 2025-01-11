@@ -87,6 +87,7 @@ export default function UpdateCarForm({ carData, onSubmit, onClose }) {
           }
         />
       </div>
+      
       <div>
         <label>Prix:</label>
         <input

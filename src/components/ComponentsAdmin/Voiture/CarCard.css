@@ -9,6 +9,7 @@
     align-items: center;
     cursor: pointer;
     
+    
     .cardContainer {
   flex: 0 1 calc(25% - 16px); /* Each card takes 25% of the container width minus gap */
   max-width: 300px; /* Prevent cards from becoming too wide */

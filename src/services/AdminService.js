@@ -55,6 +55,8 @@ export const getCars = async () => {
   };
   
   
+  
+
   export const deleteCar = async (carId) => {
     try {
       const response = await axios.delete(`${apiUrl}/cars/${carId}`);

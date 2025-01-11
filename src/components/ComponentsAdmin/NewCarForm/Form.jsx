@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Form.css';
 import { createCar } from '../../../services/AdminService';
 
+
 function Form({ onClose }) {
   // State for form inputs
   const [formData, setFormData] = useState({

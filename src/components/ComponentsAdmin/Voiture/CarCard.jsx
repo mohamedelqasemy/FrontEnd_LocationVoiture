@@ -3,6 +3,7 @@ import './CarCard.css';
 import UpdateCarForm from '../UpdateCarForm/UpdateCarForm';
 import { deleteCar } from '../../../services/AdminService';
 
+
 export default function CarCard({ id, marque, model, image, prix, description }) {
   const [dropdownVisibility, setVisibility] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
