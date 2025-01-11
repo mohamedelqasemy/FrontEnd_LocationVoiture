@@ -26,7 +26,7 @@ export const getCars = async () => {
   export const createCar = async (formData) => {
     try {
       console.log('Sending request to API...');
-      const response = await axios.post('http://localhost:8000/api/cars', formData, {
+      const response = await axios.post(`${apiUrl}/cars`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -44,19 +44,28 @@ export const getCars = async () => {
     try {
       const response = await axios.put(`${apiUrl}/cars/${carId}`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data', // Important for file upload
+          'Content-Type': 'multipart/form-data', 
         },
       });
       return response.data;
     } catch (error) {
       console.error('API error:', error.response || error.message);
-      throw error.response ? error.response.data : 'Failed to update car';
+      if (error.response) {
+        throw {
+          message: 'Failed to update car',
+          details: error.response.data,
+          status: error.response.status,
+        };
+      } else {      
+        throw {
+          message: 'Failed to update car',
+          details: error.message,
+          status: null,
+        };
+      }
     }
   };
   
-  
-  
-
   export const deleteCar = async (carId) => {
     try {
       const response = await axios.delete(`${apiUrl}/cars/${carId}`);

@@ -90,7 +90,7 @@ function Home() {
                 }}
               >
                 <img
-                  src={car.image || require('../../assets/default_car.png').default} // Utilisez une image par défaut en local
+                  src={"http://localhost:8000/storage/"+car.image || require('../../assets/default_car.png').default} // Utilisez une image par défaut en local
                   alt={car.model}
                   style={{
                     width: '100%',
