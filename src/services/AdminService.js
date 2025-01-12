@@ -100,6 +100,22 @@ export const adminlogin = async (credentials) => {
   }
 };
 
+export const getWeeklyReservations = async () => {
+  try {
+    console.log("Fetching weekly reservations...");
+    const response = await fetch(`${apiUrl}/weekly-reservations`); 
+    console.log("Response status:", response.status);
+    if (!response.ok) {
+      throw new Error('Error fetching weekly reservations');
+    }
+    const data = await response.json();
+    console.log("Weekly Reservations Data:", data);
+    return data; // Return the data to be used in the chart
+  } catch (error) {
+    console.error("Error fetching weekly reservations:", error);
+    throw error;
+  }
+};
   
   
   

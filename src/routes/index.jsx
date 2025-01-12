@@ -16,6 +16,7 @@ import Overview from "../components/ComponentsAdmin/Dashboard/Overview";
 import CarsAdmin from "../pages/admin/CarsAdmin";
 import  Login  from "../components/ComponentsAdmin/Login/Login";
 import { FetchUsers } from "../pages/admin/FetchUsers";
+import Stats from "../components/ComponentsAdmin/Dashboard/Stats";
 
 export const router = createBrowserRouter([
   {
@@ -71,7 +72,7 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
         children: [
           { path: "overview", element: <Overview /> },
-        
+          { path: "analytics", element: <Stats /> },
         ],
       },
       {

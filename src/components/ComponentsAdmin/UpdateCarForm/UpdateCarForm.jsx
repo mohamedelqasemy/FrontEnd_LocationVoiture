@@ -34,7 +34,7 @@ export default function UpdateCarForm({ carData, onSubmit, onClose }) {
       formData.append('description', updatedCarData.description);
   
       if (updatedCarData.image instanceof File) {
-        formData.append('image', updatedCarData.image);
+        formData.append('carImage', updatedCarData.image);
       }
   
       console.log('Sending data to API:', Object.fromEntries(formData.entries()));

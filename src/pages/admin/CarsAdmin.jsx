@@ -84,6 +84,7 @@ export default function CarsAdmin() {
               image={car.image}
               prix={car.prix}
               description={car.description}
+              
             />
           )
         )

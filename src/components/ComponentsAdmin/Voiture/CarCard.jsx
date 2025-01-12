@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './CarCard.css';
 import UpdateCarForm from '../UpdateCarForm/UpdateCarForm';
 import { deleteCar } from '../../../services/AdminService';
+import { updateCar } from '../../../services/AdminService';
 
 
 export default function CarCard({ id, marque, model, image, prix, description }) {
@@ -9,6 +11,7 @@ export default function CarCard({ id, marque, model, image, prix, description })
   const [isEditMode, setIsEditMode] = useState(false);
   const [updatedCarData, setUpdatedCarData] = useState({ marque, model, image, prix, description });
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+  const imageurl='http://localhost:8000/storage/';
 
   const handleEditClick = () => {
     setIsModalOpen(true); // Open the modal
@@ -31,7 +34,7 @@ export default function CarCard({ id, marque, model, image, prix, description })
 
       setIsModalOpen(false); // Close the modal after successful update
     } catch (error) {
-      console.error('Failed to update car:', error);
+      alert('Failed to update car:', error);
     }
   };
 
@@ -47,7 +50,6 @@ export default function CarCard({ id, marque, model, image, prix, description })
   
       if (response.success) {
         alert('Car deleted successfully!');
-        onDelete(id); // Notify parent component to remove this car
       } else {
         alert('Failed to delete car. Please try again.');
       }
@@ -61,7 +63,7 @@ export default function CarCard({ id, marque, model, image, prix, description })
   return (
     <div className='cardContainer' onMouseLeave={() => setVisibility(false)}>
       <h5>{updatedCarData.marque}</h5>
-      <img src={updatedCarData.image} alt={`${updatedCarData.marque} ${updatedCarData.model}`} />
+      <img src={imageurl+updatedCarData.image} alt={`${updatedCarData.marque} ${updatedCarData.model}`} />
       <div className="description">
         <span>Modele : {updatedCarData.model}</span>
         <span>Carburant : Essence</span>

@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
 import './Dashboard.css';
-import { Link,Outlet } from 'react-router-dom';
+import { Link,Outlet ,useNavigate} from 'react-router-dom';
 
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('overview', { replace: true });
+  }, [navigate]);
+
   return (
     <div className="DashboardContainer">
       <nav>
