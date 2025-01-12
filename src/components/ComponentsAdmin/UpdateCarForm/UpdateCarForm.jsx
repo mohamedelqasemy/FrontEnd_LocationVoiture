@@ -30,6 +30,7 @@ export default function UpdateCarForm({ carData, onSubmit, onClose }) {
       const formData = new FormData();
       formData.append('marque', updatedCarData.marque);
       formData.append('model', updatedCarData.model);
+      formData.append('serialDate', 2025);
       formData.append('prix', updatedCarData.prix);
       formData.append('description', updatedCarData.description);
   

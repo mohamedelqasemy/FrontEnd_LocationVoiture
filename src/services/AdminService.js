@@ -58,7 +58,7 @@ export const getCars = async () => {
           'Accept': 'application/json',
           'X-HTTP-Method-Override': 'PUT' // Pour indiquer que c'est un PUT
         },
-        withCredentials: true
+
       });
   
       console.log('Response from backend:', response.data); // Debug
