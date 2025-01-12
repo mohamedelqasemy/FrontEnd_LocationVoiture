@@ -19,7 +19,7 @@ function SideBar() {
           </li>
         <li> <Link class="link" to="/cars-admin" >Cars</Link></li>
         <li> <Link class="link" to="/users" >Users</Link> </li>
-        <li> <Link class="link" to="/dashboard" >Admins</Link> </li>
+       
       
       </ul>
       <div className="logout">
