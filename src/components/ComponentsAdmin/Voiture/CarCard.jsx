@@ -1,55 +1,67 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './CarCard.css';
 import UpdateCarForm from '../UpdateCarForm/UpdateCarForm';
-import { deleteCar } from '../../../services/AdminService';
-import { updateCar } from '../../../services/AdminService';
+import { deleteCar, updateCar } from '../../../services/AdminService';
 
-
-export default function CarCard({ id, marque, model, image, prix, description }) {
+export default function CarCard({ id, marque, model, image, prix, description, onCarUpdated }) {
   const [dropdownVisibility, setVisibility] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [updatedCarData, setUpdatedCarData] = useState({ marque, model, image, prix, description });
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
-  const imageurl='http://localhost:8000/storage/';
-
-  const handleEditClick = () => {
-    setIsModalOpen(true); // Open the modal
-    setVisibility(false); // Close the dropdown
-  };
-
-  const handleCloseForm = () => {
-    setIsModalOpen(false); // Close the modal
-  };
+  const [updatedCarData, setUpdatedCarData] = useState({ id, marque, model, image, prix, description });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const imageurl = 'http://localhost:8000/storage/';
 
   const handleFormSubmit = async (newCarData) => {
     try {
-      console.log('Updating car data:', newCarData);
-
-      const response = await updateCar(id, newCarData);
-      console.log('Car updated:', response);
-
-      // Optionally, update local state with new data
-      setUpdatedCarData(response); // Update the state with the new car data
-
-      setIsModalOpen(false); // Close the modal after successful update
+      const formData = new FormData();
+      
+      // Vérification des valeurs avant l'ajout
+      console.log('newCarData:', newCarData); // Debug
+  
+      // Ajout explicite de chaque champ avec vérification
+      if (newCarData.marque) formData.append('marque', newCarData.marque);
+      if (newCarData.model) formData.append('model', newCarData.model);
+      if (newCarData.prix) formData.append('prix', newCarData.prix);
+      if (newCarData.description) formData.append('description', newCarData.description);
+      
+      // Debug avant envoi
+      console.log('FormData contents before sending:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
+  
+      const response = await updateCar(id, formData);
+      console.log('Response from server:', response); // Debug
+      
+      if (response && response.car) {
+        setUpdatedCarData(response.car);
+        setIsModalOpen(false);
+      }
     } catch (error) {
-      alert('Failed to update car:', error);
+      console.error('Failed to update car:', error);
     }
   };
 
+  const handleEditClick = () => {
+    setIsModalOpen(true);
+    setVisibility(false);
+  };
+
+  const handleCloseForm = () => {
+    setIsModalOpen(false);
+  };
+
   const handleDelete = async () => {
-    const confirmDelete = window.confirm(
-      'Are you sure you want to delete this car? This action cannot be undone.'
-    );
-    if (!confirmDelete) return;
-  
+    if (!window.confirm('Are you sure you want to delete this car? This action cannot be undone.')) {
+      return;
+    }
+
     try {
-      const response = await deleteCar(id); // Call the delete API with car ID
-      console.log('Delete response:', response);
-  
+      const response = await deleteCar(id);
       if (response.success) {
         alert('Car deleted successfully!');
+        // Optionally call a parent function to refresh the list
+        if (onCarUpdated) {
+          onCarUpdated(null);
+        }
       } else {
         alert('Failed to delete car. Please try again.');
       }
@@ -58,12 +70,11 @@ export default function CarCard({ id, marque, model, image, prix, description })
       alert('An error occurred while deleting the car.');
     }
   };
-  
 
   return (
     <div className='cardContainer' onMouseLeave={() => setVisibility(false)}>
       <h5>{updatedCarData.marque}</h5>
-      <img src={imageurl+updatedCarData.image} alt={`${updatedCarData.marque} ${updatedCarData.model}`} />
+      <img src={imageurl + updatedCarData.image} alt={`${updatedCarData.marque} ${updatedCarData.model}`} />
       <div className="description">
         <span>Modele : {updatedCarData.model}</span>
         <span>Carburant : Essence</span>
@@ -85,16 +96,14 @@ export default function CarCard({ id, marque, model, image, prix, description })
         </div>
       )}
 
-      {/* Modal Overlay and Content */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <button className="close-btn" onClick={handleCloseForm}>×</button>
             <UpdateCarForm
-              Id={id}
-              carData={updatedCarData}  // Pass the current data to the form
-              onSubmit={handleFormSubmit}  // Pass the submit handler to the form
-              onClose={handleCloseForm}    // Handle close form action
+              carData={updatedCarData}
+              onSubmit={handleFormSubmit}
+              onClose={handleCloseForm}
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:8080/api';
+const apiUrl = 'http://localhost:8000/api';
 
 
 export const getCars = async () => {
@@ -42,27 +42,30 @@ export const getCars = async () => {
 
   export const updateCar = async (carId, formData) => {
     try {
-      const response = await axios.put(`${apiUrl}/cars/${carId}`, formData, {
+      // Debug avant envoi
+      console.log('Sending FormData to backend:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
+  
+      // Assurez-vous que l'URL est correcte
+      const response = await axios({
+        method: 'post', // Changez en POST au lieu de PUT pour multipart/form-data
+        url: `${apiUrl}/cars/${carId}`,
+        data: formData,
         headers: {
-          'Content-Type': 'multipart/form-data', 
+          'Content-Type': 'multipart/form-data',
+          'Accept': 'application/json',
+          'X-HTTP-Method-Override': 'PUT' // Pour indiquer que c'est un PUT
         },
+        withCredentials: true
       });
+  
+      console.log('Response from backend:', response.data); // Debug
       return response.data;
     } catch (error) {
       console.error('API error:', error.response || error.message);
-      if (error.response) {
-        throw {
-          message: 'Failed to update car',
-          details: error.response.data,
-          status: error.response.status,
-        };
-      } else {      
-        throw {
-          message: 'Failed to update car',
-          details: error.message,
-          status: null,
-        };
-      }
+      throw error;
     }
   };
   
