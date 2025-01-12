@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import './Dashboard.css';
 import { Link,Outlet ,useNavigate} from 'react-router-dom';

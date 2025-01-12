@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const response = await adminlogin(credentials);
     
-      if (response.success) {
+      if (response) {
         // Stockage du token et des informations admin dans le localStorage
         localStorage.setItem('admin', JSON.stringify(response.admin));
         localStorage.setItem('token', response.token); // Stockage du token aussi

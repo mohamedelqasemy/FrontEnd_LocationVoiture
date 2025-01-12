@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import CarCard from '../../components/ComponentsAdmin/Voiture/CarCard';
 import './CarsAdmin.css';
-import { getCars } from '../../services/ClientService';
+import { getCars } from '../../services/AdminService';
 import Form from '../../components/ComponentsAdmin/NewCarForm/Form';
 
 export default function CarsAdmin() {
@@ -17,8 +18,7 @@ export default function CarsAdmin() {
       try {
         const data = await getCars();
         setAllCars(data)
-       
-        
+
         setCars(data);
       } catch (error) {
         console.error('Erreur lors de la récupération des voitures:', error);

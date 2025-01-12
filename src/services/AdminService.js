@@ -87,7 +87,6 @@ export const getClients = async () => {
       : "Erreur lors de la récupération des clients";
   }
 };
-// Fonction pour l'authentification (login)
 export const adminlogin = async (credentials) => {
   try {
     const response = await axios.post(
@@ -96,6 +95,8 @@ export const adminlogin = async (credentials) => {
     );
     return response.data;
   } catch (error) {
+    // Log the error for debugging
+    console.error("Error during login:", error);
     throw error.response ? error.response.data : "Erreur lors de la connexion";
   }
 };
