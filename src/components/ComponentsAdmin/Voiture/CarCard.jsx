@@ -91,6 +91,7 @@ export default function CarCard({ id, marque, model, image, prix, description })
           <div className="modal-content">
             <button className="close-btn" onClick={handleCloseForm}>×</button>
             <UpdateCarForm
+              Id={id}
               carData={updatedCarData}  // Pass the current data to the form
               onSubmit={handleFormSubmit}  // Pass the submit handler to the form
               onClose={handleCloseForm}    // Handle close form action

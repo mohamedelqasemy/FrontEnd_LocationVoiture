@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { updateCar } from '../../../services/AdminService'; 
 
-export default function UpdateCarForm({ carData, onSubmit, onClose }) {
+export default function UpdateCarForm({Id,carData, onSubmit, onClose }) {
   const [updatedCarData, setUpdatedCarData] = useState({
     marque: carData?.marque || '',
     model: carData?.model || '',
@@ -31,6 +31,7 @@ export default function UpdateCarForm({ carData, onSubmit, onClose }) {
       formData.append('marque', updatedCarData.marque);
       formData.append('model', updatedCarData.model);
       formData.append('prix', updatedCarData.prix);
+      formData.append("dateSerie", parseInt(updatedCarData.dateSerie, 10));
       formData.append('description', updatedCarData.description);
   
       if (updatedCarData.image instanceof File) {
@@ -39,7 +40,7 @@ export default function UpdateCarForm({ carData, onSubmit, onClose }) {
   
       console.log('Sending data to API:', Object.fromEntries(formData.entries()));
   
-      const response = await updateCar(carData.id, formData);
+      const response = await updateCar(Id, formData);
       console.log('Car updated:', response);
   
       onSubmit(response);  // Pass updated car data to parent
