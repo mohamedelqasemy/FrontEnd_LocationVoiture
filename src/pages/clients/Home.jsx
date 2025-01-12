@@ -16,7 +16,7 @@ function Home() {
   const [pickupTime, setPickupTime] = React.useState(dayjs());
   const [returnTime, setReturnTime] = React.useState(dayjs());
   const [cars, setCars] = useState([]); // Etat pour stocker les voitures récupérées
-
+  const imageUrl = 'http://localhost:8000/storage/';
   // Utilisation de useEffect pour récupérer les voitures au chargement du composant
   useEffect(() => {
     // Fonction pour récupérer les voitures
@@ -90,7 +90,7 @@ function Home() {
                 }}
               >
                 <img
-                  src={"http://localhost:8000/storage/"+car.image || require('../../assets/default_car.png').default} // Utilisez une image par défaut en local
+                  src={imageUrl+car.image || require('../../assets/default_car.png').default} // Utilisez une image par défaut en local
                   alt={car.model}
                   style={{
                     width: '100%',

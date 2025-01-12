@@ -9,7 +9,7 @@ const ReservationSummary = forwardRef((props, ref) => {
   const navigate = useNavigate();
   const [nbr_jours,setNbrJours] = useState(0);
   const { selectedDate, setSelectedDate } = useDateContext();
-
+  const imageUrl = 'http://localhost:8000/storage/';
 
   useEffect(() => {
     if (selectedDate?.start && selectedDate?.end) {
@@ -62,7 +62,7 @@ const ReservationSummary = forwardRef((props, ref) => {
           Résumé de la réservation
         </Typography>
         <Divider sx={{ marginBottom: 2 }} />
-        <img src={selectedCar.image} alt={`${selectedCar.marque} ${selectedCar.model}`} width={470} />
+        <img src={imageUrl+selectedCar.image} alt={`${selectedCar.marque} ${selectedCar.model}`} width={470} />
         <Typography>
           <strong>Marque:</strong> {selectedCar.marque}
         </Typography>

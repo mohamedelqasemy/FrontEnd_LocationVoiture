@@ -7,7 +7,7 @@ export default function SearchCar() {
     model: '',
     series: '',
     minPrice: 0,
-    maxPrice: 1000,
+    maxPrice: 2000,
   });
 
   const handleFilterChange = (newFilters) => {

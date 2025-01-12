@@ -10,6 +10,7 @@ const CarCards = ({ filters }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const imageUrl = 'http://localhost:8000/storage/';
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -70,7 +71,7 @@ const CarCards = ({ filters }) => {
                 <CardMedia
                   component="img"
                   height="200"
-                  image={`${car.image}`}
+                  image={`${imageUrl+car.image}`}
                   alt={`${car.marque} ${car.model}`}
                 />
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>

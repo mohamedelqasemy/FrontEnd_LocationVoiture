@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Button, Box } from '@mui/material';
 
@@ -7,6 +9,7 @@ const ReservationCard = ({ reservation, car, onCancel, onContact }) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR'); // Format français : "yyyy-MM-dd"
   };
+  const imageUrl = 'http://localhost:8000/storage/';
 
   return (
     <Card sx={{ display: 'flex', marginBottom: 2 }}>
@@ -14,7 +17,7 @@ const ReservationCard = ({ reservation, car, onCancel, onContact }) => {
       <CardMedia
         component="img"
         sx={{ width: 300 }}
-        image={`${car.image}`}
+        image={imageUrl+car.image}
         alt={`${car.marque} ${car.model}`}
       />
 
