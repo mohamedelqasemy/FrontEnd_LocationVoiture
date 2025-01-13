@@ -38,7 +38,7 @@ export default function Overview() {
           const price = parseFloat(reservation.total_prix) || 0; 
           return sum + price;
         }, 0);
-        const average = totalMoney / allreservations.length
+        const average = totalMoney / reservations.length
   
         setmetrics(prevMetrics => ({
           ...prevMetrics, 
@@ -89,7 +89,7 @@ export default function Overview() {
           <h5>{metric.total} dhs</h5>
         </div>
         <div className="generalMetrics">
-          <span>Average revenue per car</span>
+          <span>Average revenue per reservation</span>
           <h5>{metric.average} dhs</h5>
         </div>
       </div>
